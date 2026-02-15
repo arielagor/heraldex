@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="f" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2451A0"/>
+      <stop offset="100%" stop-color="#1B3A6B"/>
+    </linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F0DC94"/>
+      <stop offset="50%" stop-color="#D4A828"/>
+      <stop offset="100%" stop-color="#A8860C"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield body -->
+  <path d="M16 1 L29 5.5 Q30 6 30 6.5 L30 17 Q30 22 26 25.5 Q22 29 16.5 31.5 Q16.2 31.6 16 31.6 Q15.8 31.6 15.5 31.5 Q10 29 6 25.5 Q2 22 2 17 L2 6.5 Q2 6 3 5.5 Z" fill="url(#f)" stroke="url(#g)" stroke-width="1.2"/>
+  <!-- Chevron -->
+  <path d="M16 11 L23.5 18 L22 19.5 L16 14 L10 19.5 L8.5 18 Z" fill="url(#g)"/>
+  <!-- Three mullets -->
+  <polygon points="16,7 17,9 19,9 17.5,10.5 18,12.5 16,11.5 14,12.5 14.5,10.5 13,9 15,9" fill="url(#g)"/>
+  <polygon points="11,22 12,24 14,24 12.5,25.5 13,27.5 11,26.5 9,27.5 9.5,25.5 8,24 10,24" fill="url(#g)"/>
+  <polygon points="21,22 22,24 24,24 22.5,25.5 23,27.5 21,26.5 19,27.5 19.5,25.5 18,24 20,24" fill="url(#g)"/>
+</svg>
