@@ -3,21 +3,21 @@ import { MessageSquare, Twitter, Github } from "lucide-react";
 const productLinks = [
   { label: "Design Editor", href: "/editor" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Merch", href: "#" },
-  { label: "API", href: "#" },
+  { label: "Merch", href: "/product/merch" },
+  { label: "API", href: "/product/api" },
 ];
 
 const companyLinks = [
-  { label: "About", href: "#" },
-  { label: "Blog", href: "#" },
-  { label: "Careers", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "About", href: "/company/about" },
+  { label: "Blog", href: "/company/blog" },
+  { label: "Careers", href: "/company/careers" },
+  { label: "Contact", href: "/company/contact" },
 ];
 
 const legalLinks = [
-  { label: "Terms", href: "#" },
-  { label: "Privacy", href: "#" },
-  { label: "IP Policy", href: "#" },
+  { label: "Terms", href: "/legal/terms" },
+  { label: "Privacy", href: "/legal/privacy" },
+  { label: "IP Policy", href: "/legal/ip-policy" },
 ];
 
 const socialLinks = [
