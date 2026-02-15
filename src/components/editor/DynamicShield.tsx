@@ -135,35 +135,37 @@ export default function DynamicShield({ state, style, className = "" }: DynamicS
         )}
 
         {/* Charges */}
-        {state.charge !== "none" &&
-          (() => {
-            const chargeKey = state.charge as Exclude<ChargeType, "none">;
-            const isPolygon = chargeIsPolygon[chargeKey];
-            return positions.map(([cx, cy], i) => (
-              <g
-                key={i}
-                transform={`translate(${cx}, ${cy})`}
-                clipPath={`url(#clip-${uid})`}
-                filter={style === "Traditional" ? `url(#glow-${uid})` : undefined}
-              >
-                {isPolygon ? (
-                  <polygon
-                    points={chargePaths[chargeKey]}
-                    fill={chgFill}
-                    stroke={chgStroke}
-                    strokeWidth={isMinimal ? 1.5 : 0}
-                  />
-                ) : (
-                  <path
-                    d={chargePaths[chargeKey]}
-                    fill={chgFill}
-                    stroke={chgStroke}
-                    strokeWidth={isMinimal ? 1.5 : 0}
-                  />
-                )}
-              </g>
-            ));
-          })()}
+        {state.charge !== "none" && (
+          <g clipPath={`url(#clip-${uid})`}>
+            {(() => {
+              const chargeKey = state.charge as Exclude<ChargeType, "none">;
+              const isPolygon = chargeIsPolygon[chargeKey];
+              return positions.map(([cx, cy], i) => (
+                <g
+                  key={i}
+                  transform={`translate(${cx}, ${cy}) scale(1.5)`}
+                  filter={style === "Traditional" ? `url(#glow-${uid})` : undefined}
+                >
+                  {isPolygon ? (
+                    <polygon
+                      points={chargePaths[chargeKey]}
+                      fill={chgFill}
+                      stroke={chgStroke}
+                      strokeWidth={isMinimal ? 1.5 : 0}
+                    />
+                  ) : (
+                    <path
+                      d={chargePaths[chargeKey]}
+                      fill={chgFill}
+                      stroke={chgStroke}
+                      strokeWidth={isMinimal ? 1.5 : 0}
+                    />
+                  )}
+                </g>
+              ));
+            })()}
+          </g>
+        )}
 
         {/* Highlight overlay (Traditional depth) */}
         {style === "Traditional" && (
