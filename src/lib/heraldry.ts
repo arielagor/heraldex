@@ -29,7 +29,10 @@ export type ChargeType =
 
 export type RenderStyle = "Traditional" | "Modern" | "Minimal" | "Pixel Art";
 
+export type ShieldShape = "heater" | "roundel" | "lozenge" | "kite" | "oval" | "horsehead";
+
 export interface BlazonState {
+  shieldShape: ShieldShape;
   fieldTincture: string; // tincture name key
   ordinary: OrdinaryType;
   ordinaryTincture: string;
@@ -40,6 +43,7 @@ export interface BlazonState {
 
 // ── Default State ──────────────────────────────────────────────
 export const defaultBlazon: BlazonState = {
+  shieldShape: "heater",
   fieldTincture: "Azure",
   ordinary: "chevron",
   ordinaryTincture: "Or",
@@ -71,6 +75,41 @@ export const SHIELD_PATH =
 
 export const SHIELD_INNER =
   "M140 16 L258 58 Q260 59 260 61 L260 170 Q260 216 230 254 Q202 290 142 316 Q141 316.5 140 316.5 Q139 316.5 138 316 Q78 290 50 254 Q20 216 20 170 L20 61 Q20 59 22 58 Z";
+
+// ── Shield Shape Paths (all in 280x336 viewBox) ───────────────
+export interface ShieldShapeData {
+  label: string;
+  path: string;
+  innerPath?: string; // optional inner border
+}
+
+export const shieldShapes: Record<ShieldShape, ShieldShapeData> = {
+  heater: {
+    label: "Heater",
+    path: SHIELD_PATH,
+    innerPath: SHIELD_INNER,
+  },
+  roundel: {
+    label: "Roundel",
+    path: "M140,8 C213,8 272,67 272,140 L272,168 C272,241 213,300 140,300 C67,300 8,241 8,168 L8,140 C8,67 67,8 140,8 Z",
+  },
+  lozenge: {
+    label: "Lozenge",
+    path: "M140,8 L264,168 L140,328 L16,168 Z",
+  },
+  kite: {
+    label: "Kite",
+    path: "M140,4 L268,120 Q268,124 266,128 L148,328 Q144,334 140,334 Q136,334 132,328 L14,128 Q12,124 12,120 Z",
+  },
+  oval: {
+    label: "Oval",
+    path: "M140,8 C220,8 260,60 260,140 L260,196 C260,276 220,328 140,328 C60,328 20,276 20,196 L20,140 C20,60 60,8 140,8 Z",
+  },
+  horsehead: {
+    label: "Horse Head",
+    path: "M140,4 L248,36 Q260,40 264,52 L268,100 Q270,120 260,136 L240,168 Q236,176 236,186 L236,260 Q236,290 218,310 Q200,330 170,332 L140,334 L110,332 Q80,330 62,310 Q44,290 44,260 L44,186 Q44,176 40,168 L20,136 Q10,120 12,100 L16,52 Q20,40 32,36 Z",
+  },
+};
 
 // ── Ordinary Paths (all inside 280x336 shield viewBox) ────────
 export const ordinaryPaths: Record<Exclude<OrdinaryType, "none">, string> = {

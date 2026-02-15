@@ -7,8 +7,7 @@ import {
   type ChargeType,
   type OrdinaryType,
   getTincture,
-  SHIELD_PATH,
-  SHIELD_INNER,
+  shieldShapes,
   ordinaryPaths,
   chargePaths,
   chargeIsPolygon,
@@ -24,6 +23,7 @@ interface DynamicShieldProps {
 export default function DynamicShield({ state, style, className = "" }: DynamicShieldProps) {
   const uid = useId().replace(/:/g, "");
 
+  const shape = shieldShapes[state.shieldShape];
   const field = getTincture(state.fieldTincture);
   const ordTincture = getTincture(state.ordinaryTincture);
   const chgTincture = getTincture(state.chargeTincture);
@@ -99,22 +99,22 @@ export default function DynamicShield({ state, style, className = "" }: DynamicS
 
           {/* Shield clip path */}
           <clipPath id={`clip-${uid}`}>
-            <path d={SHIELD_PATH} />
+            <path d={shape.path} />
           </clipPath>
         </defs>
 
         {/* Shield body */}
         <path
-          d={SHIELD_PATH}
+          d={shape.path}
           fill={fieldFill}
           stroke={fieldStroke}
           strokeWidth={isMinimal ? 2 : 3}
         />
 
         {/* Inner border (Traditional only) */}
-        {style === "Traditional" && (
+        {style === "Traditional" && shape.innerPath && (
           <path
-            d={SHIELD_INNER}
+            d={shape.innerPath}
             fill="none"
             stroke={`url(#border-${uid})`}
             strokeWidth="1"
@@ -167,7 +167,7 @@ export default function DynamicShield({ state, style, className = "" }: DynamicS
 
         {/* Highlight overlay (Traditional depth) */}
         {style === "Traditional" && (
-          <path d={SHIELD_PATH} fill="white" opacity="0.03" />
+          <path d={shape.path} fill="white" opacity="0.03" />
         )}
       </svg>
     </div>

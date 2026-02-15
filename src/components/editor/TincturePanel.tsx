@@ -6,7 +6,9 @@ import {
   type BlazonState,
   type OrdinaryType,
   type ChargeType,
+  type ShieldShape,
   tinctures,
+  shieldShapes,
 } from "@/lib/heraldry";
 
 interface TincturePanelProps {
@@ -99,6 +101,25 @@ export default function TincturePanel({ state, onChange }: TincturePanelProps) {
           Blazon Editor
         </h3>
       </div>
+
+      {/* Shield Shape */}
+      <Section title="Shape">
+        <div className="grid grid-cols-3 gap-1">
+          {(Object.keys(shieldShapes) as ShieldShape[]).map((key) => (
+            <button
+              key={key}
+              className={`text-[10px] py-1.5 px-1 rounded text-center transition-all ${
+                state.shieldShape === key
+                  ? "bg-accent-500/20 text-accent-400 ring-1 ring-accent-500/50"
+                  : "bg-sable-700/50 text-sable-400 hover:bg-sable-700 hover:text-sable-200"
+              }`}
+              onClick={() => onChange({ shieldShape: key })}
+            >
+              {shieldShapes[key].label}
+            </button>
+          ))}
+        </div>
+      </Section>
 
       {/* Field Tincture */}
       <Section title="Field">
