@@ -11,6 +11,7 @@ import {
   SHIELD_INNER,
   ordinaryPaths,
   chargePaths,
+  chargeIsPolygon,
   getChargePositions,
 } from "@/lib/heraldry";
 
@@ -137,7 +138,7 @@ export default function DynamicShield({ state, style, className = "" }: DynamicS
         {state.charge !== "none" &&
           (() => {
             const chargeKey = state.charge as Exclude<ChargeType, "none">;
-            const isPolygon = chargeKey === "mullet";
+            const isPolygon = chargeIsPolygon[chargeKey];
             return positions.map(([cx, cy], i) => (
               <g
                 key={i}

@@ -83,13 +83,27 @@ export const ordinaryPaths: Record<Exclude<OrdinaryType, "none">, string> = {
   chief: "M8 56 Q8 52 12 50 L140 4 L268 50 Q272 52 272 56 L272 120 L8 120 Z",
 };
 
-// ── Charge SVG Paths (centered at 0,0, size ~36) ──────────────
+// ── Charge Data (centered at 0,0) ─────────────────────────────
+// Mullet uses polygon points format; all others use SVG path d format.
+export const chargeIsPolygon: Record<Exclude<ChargeType, "none">, boolean> = {
+  mullet: true,
+  lion: false,
+  eagle: false,
+  "fleur-de-lis": false,
+  sword: false,
+  dragon: false,
+  tower: false,
+  crescent: false,
+};
+
 export const chargePaths: Record<Exclude<ChargeType, "none">, string> = {
+  // Polygon points (no M prefix) — used with <polygon>
   mullet:
-    "M0,-18 5.3,-5.6 18,-5.6 8.5,3.4 11.1,16.2 0,9 -11.1,16.2 -8.5,3.4 -18,-5.6 -5.3,-5.6",
-  lion: "M0,-16 C8,-16 14,-10 14,-2 C14,4 10,8 6,12 L10,16 L-2,14 L-10,16 L-6,12 C-10,8 -14,4 -14,-2 C-14,-10 -8,-16 0,-16 Z",
+    "0,-18 5.3,-5.6 18,-5.6 8.5,3.4 11.1,16.2 0,9 -11.1,16.2 -8.5,3.4 -18,-5.6 -5.3,-5.6",
+  // SVG path d — used with <path>
+  lion: "M-8,-16 L-4,-14 L0,-16 L4,-14 L8,-16 L10,-10 L8,-4 L12,0 L10,4 L14,8 L10,10 L6,8 L4,12 L2,16 L0,14 L-2,16 L-4,12 L-6,8 L-10,10 L-14,8 L-10,4 L-12,0 L-8,-4 L-10,-10 Z",
   eagle:
-    "M0,-18 L6,-10 L18,-8 L12,0 L16,12 L0,6 L-16,12 L-12,0 L-18,-8 L-6,-10 Z",
+    "M0,-18 L4,-14 L8,-16 L10,-10 L16,-10 L14,-4 L18,0 L12,2 L16,8 L10,8 L8,14 L4,10 L0,16 L-4,10 L-8,14 L-10,8 L-16,8 L-12,2 L-18,0 L-14,-4 L-16,-10 L-10,-10 L-8,-16 L-4,-14 Z",
   "fleur-de-lis":
     "M0,-18 C4,-14 6,-8 6,-4 C10,-8 16,-8 16,-2 C16,4 10,6 6,4 L6,14 L10,18 L-10,18 L-6,14 L-6,4 C-10,6 -16,4 -16,-2 C-16,-8 -10,-8 -6,-4 C-6,-8 -4,-14 0,-18 Z",
   sword:
