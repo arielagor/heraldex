@@ -13,9 +13,7 @@ jobs:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
           HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK }}
         run: |
-          # Use jq to safely build JSON with the commit message
-          PAYLOAD=$(jq -n --arg title "$COMMIT_MSG" '{"title": $title}')
-          curl -s -X POST \
-            -H "Content-Type: application/json" \
-            -d "$PAYLOAD" \
-            "$HOOK_URL"
+          # URL-encode the first line of the commit message for trigger_title
+          FIRST_LINE=$(echo "$COMMIT_MSG" | head -n 1)
+          ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$FIRST_LINE")
+          curl -s -X POST -d '{}' "${HOOK_URL}?trigger_title=${ENCODED}"
