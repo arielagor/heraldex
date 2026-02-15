@@ -22,8 +22,8 @@ export default function EditorPage() {
         {/* Left panel */}
         <TincturePanel state={state} onChange={handleChange} />
 
-        {/* Center canvas */}
-        <div className="flex-1 flex flex-col items-center gap-6">
+        {/* Center canvas — sticky so it stays visible while scrolling panels */}
+        <div className="flex-1 flex flex-col items-center gap-6 sticky top-24 self-start">
           <div className="w-full max-w-[360px] aspect-[280/336]">
             <DynamicShield state={state} style={renderStyle} className="w-full h-full" />
           </div>
@@ -36,13 +36,15 @@ export default function EditorPage() {
 
       {/* Mobile layout */}
       <div className="lg:hidden flex flex-col px-4 py-4 gap-4">
-        {/* Shield */}
-        <div className="w-full max-w-[280px] mx-auto aspect-[280/336]">
-          <DynamicShield state={state} style={renderStyle} className="w-full h-full" />
+        {/* Shield — sticky at top on mobile */}
+        <div className="sticky top-16 z-20 bg-sable-950 pb-2">
+          <div className="w-full max-w-[280px] mx-auto aspect-[280/336]">
+            <DynamicShield state={state} style={renderStyle} className="w-full h-full" />
+          </div>
+          <div className="mt-2">
+            <RenderStyleBar style={renderStyle} onChange={setRenderStyle} />
+          </div>
         </div>
-
-        {/* Render style */}
-        <RenderStyleBar style={renderStyle} onChange={setRenderStyle} />
 
         {/* Controls */}
         <TincturePanel state={state} onChange={handleChange} />
